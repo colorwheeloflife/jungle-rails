@@ -17,6 +17,9 @@
     <% end %>
   </footer>
 
+  <%= content_tag(:aside, "SOLD OUT!", :class => ("sold-out" if product.quantity == 0)
+  ) %>
+
   <aside class="price">
     <%= humanized_money_with_symbol product.price %>
   </aside>
