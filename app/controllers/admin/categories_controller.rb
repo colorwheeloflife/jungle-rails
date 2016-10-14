@@ -1,5 +1,5 @@
 class Admin::CategoriesController < ApplicationController
-  http_basic_authenticate_with username: ENV['ADMIN_PUBLISHABLE_KEY'], password: ENV['ADMIN_SECRET_KEY']
+  http_basic_authenticate_with name: ENV['ADMIN_PUBLISHABLE_KEY'], password: ENV['ADMIN_SECRET_KEY']
 
   def index
     @categories = Category.order(id: :desc).all
