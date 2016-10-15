@@ -72,6 +72,15 @@ main section.categories-show {
         }
       }
 
+      div.review-row {
+        position: absolute;
+        margin-top: 0;
+        margin-right: 0;
+        float: right;
+
+        background-color: yellow;
+      }
+
     }
   }
 }
@@ -84,5 +93,6 @@ main section.products-show {
     }
   }
 }
+
 
 

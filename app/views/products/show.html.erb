@@ -26,19 +26,19 @@
       </div>
     </div>
 
-    <div class="row">
-<!--       <%= form_for([@review]) do |f| %>
+    <div class="review-row">
+      <%= form_for([@review]) do |f| %>
         <p>
-          <%= f.label :description %>
-          <%= f.text_field :description, required: true %>
+          <%= f.label :rating %>
+          <%= f.text_field :rating, required: true %>
         </p>
         <p>
-          <%= f.text_area :rating %>
+          <%= f.text_area :description %>
         </p>
         <p>
           <%= f.submit %>
         </p>
-      <% end %> -->
+      <% end %>
       <dl class="dl-horizontal">
         <% @product.reviews.each do |review| %>
         <dt><strong> Review </strong></dt>
