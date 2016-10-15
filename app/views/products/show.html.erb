@@ -27,45 +27,45 @@
     </div>
 
     <% if current_user %>
-    <div class="review-row">
+      <div class="review-row">
 
-      <%= form_for([@review]) do |f| %>
-        <p>
-          <%= f.label :rating %>
-          <%= f.select :rating, (0..5) %>
-        </p>
-        <p>
-          <%= f.label :description %>
-          <%= f.text_area :description %>
-        </p>
-        <p>
-          <%= f.submit %>
-          <%= f.hidden_field :product_id, :value => @product.id %>
-        </p>
-      <% end %>
-
-      <dl class="dl-horizontal">
-        <% @product.reviews.reverse_each do |review| %>
-        <dt><strong> Review </strong></dt>
-        <dd><%= review.description %></dd>
-        <dt><strong> Rating </strong></dt>
-        <dd><%= review.rating %></dd>
-
-        <dt>Me # <%= current_user.id %> </d>
-        <dt>User # <%= review.user_id %> </d>
-
-        <% if current_user.id == review.user_id %>
-          <dt> Statement BONGO MONGO </dt>
-          <%= button_to "delete", {:controller => :reviews,
-                                    :action => 'destroy', :id => review.id }, :method => :delete %>
+        <%= form_for([@review]) do |f| %>
+          <p>
+            <%= f.label :rating %>
+            <%= f.select :rating, (0..5) %>
+          </p>
+          <p>
+            <%= f.label :description %>
+            <%= f.text_area :description %>
+          </p>
+          <p>
+            <%= f.submit %>
+            <%= f.hidden_field :product_id, :value => @product.id %>
+          </p>
         <% end %>
 
+        <table class="dl-horizontal">
+          <tr>
+            <th>Rating</th>
+            <th>Review   </th>
+            <th></th>
+          </tr>
 
-
-      <% end %>
-
-    </div>
-
+          <% @product.reviews.reverse_each do |review| %>
+            <tr>
+              <td><%= review.rating %></td>
+              <td><%= review.description %></td>
+              <% if current_user.id == review.user_id %>
+                <td><%= button_to "delete", {
+                  :controller => :reviews,
+                  :action => 'destroy',
+                  :id => review.id },
+                  :method => :delete %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </table>
+      </div>
 
     <% else %>
 
@@ -76,7 +76,6 @@
         <dd><%= review.description %></dd>
         <dt><strong> Rating </strong></dt>
         <dd><%= review.rating %></dd>
-
         <% end %>
       </div>
     <% end %>
