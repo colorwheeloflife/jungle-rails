@@ -26,6 +26,7 @@
       </div>
     </div>
 
+    <% if current_user %>
     <div class="review-row">
 
       <%= form_for([@review]) do |f| %>
@@ -44,15 +45,41 @@
       <% end %>
 
       <dl class="dl-horizontal">
-        <% @product.reviews.each do |review| %>
+        <% @product.reviews.reverse_each do |review| %>
         <dt><strong> Review </strong></dt>
         <dd><%= review.description %></dd>
         <dt><strong> Rating </strong></dt>
         <dd><%= review.rating %></dd>
+
+        <dt>Me # <%= current_user.id %> </d>
+        <dt>User # <%= review.user_id %> </d>
+
+        <% if current_user.id == review.user_id %>
+          <dt> Statement BONGO MONGO </dt>
+          <%= button_to "delete", {:controller => :reviews,
+                                    :action => 'destroy', :id => review.id }, :method => :delete %>
+        <% end %>
+
+
+
       <% end %>
 
     </div>
 
+
+    <% else %>
+
+      <div>
+        <dl class="dl-horizontal">
+        <% @product.reviews.reverse_each do |review| %>
+        <dt><strong> Review </strong></dt>
+        <dd><%= review.description %></dd>
+        <dt><strong> Rating </strong></dt>
+        <dd><%= review.rating %></dd>
+
+        <% end %>
+      </div>
+    <% end %>
   </article>
 
 </section>
