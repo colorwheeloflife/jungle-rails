@@ -26,6 +26,29 @@
       </div>
     </div>
 
+    <div class="row">
+<!--       <%= form_for([@review]) do |f| %>
+        <p>
+          <%= f.label :description %>
+          <%= f.text_field :description, required: true %>
+        </p>
+        <p>
+          <%= f.text_area :rating %>
+        </p>
+        <p>
+          <%= f.submit %>
+        </p>
+      <% end %> -->
+      <dl class="dl-horizontal">
+        <% @product.reviews.each do |review| %>
+        <dt><strong> Review </strong></dt>
+        <dd><%= review.description %></dd>
+        <dt><strong> Rating </strong></dt>
+        <dd><%= review.rating %></dd>
+      <% end %>
+
+    </div>
+
   </article>
 
 </section>

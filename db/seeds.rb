@@ -130,4 +130,45 @@ cat3.products.create!({
 })
 
 
+
+##REVIEWS
+
+puts "Re-creating Products ..."
+
+prod1 = Product.find_or_create_by! name: 'Men\'s Classy shirt'
+prod2 = Product.find_or_create_by! name: 'Women\'s Zebra pants'
+prod3 = Product.find_or_create_by! name: 'Hipster Hat'
+
+prod1.reviews.create!({
+  description: "Very classy.",
+  rating: 4
+})
+
+prod1.reviews.create!({
+  description: "Only a little classy.",
+  rating: 3
+})
+
+prod2.reviews.create!({
+  description: "I'm a zebra! Nheheheheeee!",
+  rating: 5
+})
+
+prod3.reviews.create!({
+  description: "Still cool after its cool.",
+  rating: 4
+})
+
+prod3.reviews.create!({
+  description: "Replacing my old one.. that I had before it was cool.",
+  rating: 4
+})
+
+
+
+
+
+
+
+
 puts "DONE!"
