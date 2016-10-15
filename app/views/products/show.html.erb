@@ -28,11 +28,16 @@
 
     <div class="review-row">
       <%= form_for([@review]) do |f| %>
-        <p>
+<!--         <p>
           <%= f.label :rating %>
           <%= f.text_field :rating, required: true %>
+        </p> -->
+        <p>
+          <%= f.label :rating %>
+          <%= f.select :rating, (0..5) %>
         </p>
         <p>
+          <%= f.label :description %>
           <%= f.text_area :description %>
         </p>
         <p>
