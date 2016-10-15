@@ -27,11 +27,8 @@
     </div>
 
     <div class="review-row">
+
       <%= form_for([@review]) do |f| %>
-<!--         <p>
-          <%= f.label :rating %>
-          <%= f.text_field :rating, required: true %>
-        </p> -->
         <p>
           <%= f.label :rating %>
           <%= f.select :rating, (0..5) %>
@@ -42,8 +39,10 @@
         </p>
         <p>
           <%= f.submit %>
+          <%= f.hidden_field :product_id, :value => @product.id %>
         </p>
       <% end %>
+
       <dl class="dl-horizontal">
         <% @product.reviews.each do |review| %>
         <dt><strong> Review </strong></dt>
