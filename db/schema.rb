@@ -16,32 +16,10 @@ ActiveRecord::Schema.define(version: 20161017184205) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "attendees", id: :bigserial, force: :cascade do |t|
-    t.text    "name"
-    t.boolean "time1vote"
-    t.boolean "time2vote"
-    t.boolean "time3vote"
-  end
-
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "creators", id: :bigserial, force: :cascade do |t|
-    t.text "name"
-    t.text "email"
-  end
-
-  create_table "events", id: :bigserial, force: :cascade do |t|
-    t.text    "name"
-    t.integer "creatorid"
-    t.text    "uniqueurl"
-    t.text    "description"
-    t.text    "location"
-    t.integer "event_date"
-    t.text    "event_time"
   end
 
   create_table "line_items", force: :cascade do |t|
@@ -63,11 +41,6 @@ ActiveRecord::Schema.define(version: 20161017184205) do
     t.datetime "updated_at",       null: false
     t.string   "stripe_charge_id"
     t.string   "email"
-  end
-
-  create_table "participants", id: :bigserial, force: :cascade do |t|
-    t.integer "eventid"
-    t.integer "attendeesid"
   end
 
   create_table "products", force: :cascade do |t|
@@ -105,10 +78,7 @@ ActiveRecord::Schema.define(version: 20161017184205) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "events", "creators", column: "creatorid", name: "events_creatorid_fkey"
   add_foreign_key "line_items", "orders"
   add_foreign_key "line_items", "products"
-  add_foreign_key "participants", "attendees", column: "attendeesid", name: "participants_attendeesid_fkey"
-  add_foreign_key "participants", "events", column: "eventid", name: "participants_eventid_fkey"
-  add_foreign_key "products", "categories"
+
 end
