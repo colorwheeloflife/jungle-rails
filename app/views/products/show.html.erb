@@ -60,13 +60,12 @@
             <tr>
               <td><%= review.rating %></td>
               <td><%= review.description %></td>
-              <% if @current_user == current_user.id == review.user_id %>
+              <% if @current_user && current_user.id == review.user_id %>
                 <td><%= button_to "delete", {
                   :controller => :reviews,
                   :action => 'destroy',
                   :id => review.id },
                   :method => :delete %></td>
-              <% else %>
               <% end %>
             </tr>
           <% end %>
