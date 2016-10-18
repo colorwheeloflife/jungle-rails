@@ -7,12 +7,18 @@ class UsersController < ApplicationController
   def create
     user = User.new(user_params)
 
-    if user.save
-      session[:user_id] = user.id
-      redirect_to '/'
-    else
+    if User.where(:email => user.email).exists?
+      raise 'You have entered an email already in the system.'
       redirect_to '/signup'
+    else
+      if user.save
+        session[:user_id] = user.id
+        redirect_to '/'
+      else
+        redirect_to '/signup'
+      end
     end
+
 
   end
 
