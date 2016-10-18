@@ -26,7 +26,10 @@
       </div>
     </div>
 
+    @current
+
     <% if current_user %>
+      @current_user = current_user
       <div class="review-row">
 
         <%= form_for([@review]) do |f| %>
@@ -57,12 +60,13 @@
             <tr>
               <td><%= review.rating %></td>
               <td><%= review.description %></td>
-              <% if current_user.id == review.user_id %>
+              <% if @current_user == current_user.id == review.user_id %>
                 <td><%= button_to "delete", {
                   :controller => :reviews,
                   :action => 'destroy',
                   :id => review.id },
                   :method => :delete %></td>
+              <% else %>
               <% end %>
             </tr>
           <% end %>
