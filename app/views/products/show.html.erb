@@ -26,10 +26,8 @@
       </div>
     </div>
 
-    @current
-
     <% if current_user %>
-      @current_user = current_user
+      <% @current_user = current_user %>
       <div class="review-row">
 
         <%= form_for([@review]) do |f| %>

@@ -6,7 +6,7 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
-    @product = Product.find_by params['product_id']
+    @product = Product.find(@review.product_id)
     @review.user = current_user
     if @review.save
       redirect_to [@product], notice: 'Review created!'

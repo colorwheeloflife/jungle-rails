@@ -8,10 +8,13 @@ class OrdersController < ApplicationController
     charge = perform_stripe_charge
     order  = create_order(charge)
 
-    if order.valid?
+    if order.valid? && current_user
       OrderMailer.order_email(current_user, order).deliver_now
       empty_cart!
       redirect_to order, notice: 'Your Order has been placed.'
+    elsif
+      redirect_to login_path
+
     else
       redirect_to cart_path, error: order.errors.full_messages.first
     end

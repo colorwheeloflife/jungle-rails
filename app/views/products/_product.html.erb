@@ -8,6 +8,14 @@
   <p class="description">
     <%= product.description %>
   </p>
+  <p class="rating">
+    <% if product.reviews.count > 0 %>
+      <% @avgReview = product.reviews.sum(:rating) / product.reviews.count %>
+      Average Rating: <%= @avgReview %>
+    <% else %>
+      <em>No reviews yet for this product</em>
+    <% end %>
+  </p>
   <footer class="actions">
     <%= link_to add_item_cart_path(product_id: product.id), class: 'btn btn-primary', method: :put do %>
       <%= fa_icon "shopping-cart", text: 'Add' %>

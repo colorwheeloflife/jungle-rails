@@ -4,10 +4,12 @@
     <h1>My Cart</h1>
   </header>
 
-  <% if cart.size == 0 %>
+  <% if cart.empty? %>
     <div>
       <p>Your cart is currently empty!</p>
-      <a href="http://0.0.0.0:3000/">
+      <%= link_to products_url do %>
+      <h4>Continue Shopping</h4>
+    <% end %>
     </div>
 
   <% else %>
